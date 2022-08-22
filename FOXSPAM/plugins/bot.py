@@ -5,7 +5,7 @@ import git
 import heroku3
 # Changed root to FOXSPAM
 from FOXSPAM import BOT0, BOT1, BOT2, BOT3, BOT4, BOT5, BOT6, BOT7, BOT8, BOT9
-from FOXSPAM import OWNER_ID, SUDO_USERS, HEROKU_APP_NAME, HEROKU_API_KEY, deadlyversion
+from FOXSPAM import OWNER_ID, SUDO_USERS, HEROKU_APP_NAME, HEROKU_API_KEY, FOXversion
 from FOXSPAM import CMD_HNDLR as hl
 from telethon.tl.functions.users import GetFullUserRequest
 # alive Pic By Default It's Will Show Our
@@ -18,12 +18,12 @@ from datetime import datetime
 DEAD_PIC = ALIVE_PIC if ALIVE_PIC else "https://te.legra.ph/file/480b27064515d563f982c.jpg"
   
 
-DEADLY = "✯ 𝗗𝗲𝗮𝗱𝗹𝘆 𝗦𝗽𝗮𝗺 𝗛𝗲𝗿𝗲 ✯\n\n"
-DEADLY += f"═══════════════════\n"
-DEADLY += f"• **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ** : `3.10.1`\n"
-DEADLY += f"• **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪᴏɴ** : `{version.__version__}`\n"
-DEADLY += f"• **ᴅᴇᴀᴅʟʏʙᴏᴛ ᴠᴇʀsɪᴏɴ**  : `{deadlyversion}`\n"
-DEADLY += f"═══════════════════\n\n"   
+FOX = "✯ Fox Spam Here ✯\n\n"
+FOX += f"═══════════════════\n"
+FOX += f"• **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ** : `3.10.1`\n"
+FOX += f"• **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀsɪᴏɴ** : `{version.__version__}`\n"
+FOX += f"• **ᴅᴇᴀᴅʟʏʙᴏᴛ ᴠᴇʀsɪᴏɴ**  : `{FOXversion}`\n"
+FOX += f"═══════════════════\n\n"   
 
                                   
 @BOT0.on(events.NewMessage(incoming=True, pattern=r"\%salive(?: |$)(.*)" % hl))
@@ -31,7 +31,7 @@ async def alive(event):
   if event.sender_id in SUDO_USERS:
      await BOT0.send_file(event.chat_id,
                                   DEAD_PIC,
-                                  caption=DEADLY,
+                                  caption=FOX,
                                   buttons=[
         [
         Button.url("ᴄʜᴀɴɴᴇʟ", "https://t.me/FoxSpamTool"),
@@ -87,7 +87,7 @@ async def ping(e):
         event = await e.reply(text, parse_mode=None, link_preview=None )
         end = datetime.now()
         ms = (end-start).microseconds / 1000
-        await event.edit(f"🎉 🇵 🇴 🇳 🇬 !\n\n♡︎ `{ms}` 𝗺𝘀 ♡︎")
+        await event.edit(f"Ping !\n\n♡︎ `{ms}` ms ︎")
         
         
 
@@ -103,7 +103,7 @@ async def ping(e):
 @BOT9.on(events.NewMessage(incoming=True, pattern=r"\%srestart(?: |$)(.*)" % hl))
 async def restart(e):
     if e.sender_id in SUDO_USERS:
-        text = "𝐑𝐞𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ↪️.. Please Wait Until It Starts Again"
+        text = "Reloading ↪️.. Please Wait Until It Starts Again"
         await e.reply(text, parse_mode=None, link_preview=None)
         try:
             await BOT0.disconnect()
@@ -159,7 +159,7 @@ sudousers = os.environ.get("SUDO_USER", None)
 async def tb(event):
     if event.sender_id == OWNER_ID:
         ok = await event.reply("Adding user as a sudo...")
-        DEADLY = "SUDO_USER"
+        FOX = "SUDO_USER"
         if HEROKU_APP_NAME is not None:
             app = Heroku.app(HEROKU_APP_NAME)
         else:
@@ -177,7 +177,7 @@ async def tb(event):
         else:
             newsudo = f"{target}"
         await ok.edit(f"**Added `{target}` ** as a sudo user 🔱 Restarting.. Please wait a minute...")
-        heroku_var[DEADLY] = newsudo   
+        heroku_var[FOX] = newsudo   
    
      
 async def get_user(event):
